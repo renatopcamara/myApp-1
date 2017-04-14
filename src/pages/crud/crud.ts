@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import { BackandService } from '@backand/angular2-sdk'
-import { NavController, NavParams, ToastController,AlertController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 
 @Component({
   templateUrl: 'crud.html',
@@ -11,10 +11,11 @@ export class CrudPage {
 
   public email: string = '';
   description: string = 'abastecimento';
-  quantidade = 0;
-  consumo = 0 ;
-  odometro = 0 ;
+  quantidade: number;
+  consumo: number;
+  odometro: number;
   datareg: string = '14/04/2017';
+  dataregistro: string;
 
   get score() {
     let consumo = this.odometro / this.quantidade;
@@ -33,7 +34,7 @@ export class CrudPage {
 
   constructor(
     private backand: BackandService,
-    private alertCtrl: AlertController)
+    public alertCtrl: AlertController)
   {
     this.searchQuery = '';
     let that = this;
@@ -62,32 +63,26 @@ export class CrudPage {
       );
   }
 
-  public mostraAlerta() {
-  let alert = this.alertCtrl.create({
-    title: 'Low battery',
-    subTitle: '10% of battery remaining',
-    buttons: ['Dismiss']
-  });
-  alert.present();
-}
+  mostraAlerta() {
+      let alert = this.alertCtrl.create({
+        title: 'Consumo',
+        message: 'Your friend, Obi wan Kenobi, just approved your friend request!',
+        buttons: ['Ok']
+      });
+      alert.present()
+    }
 
   public postItem() {
+    let mileage = this.odometro / this.quantidade;
+
     let item = {
       email: this.loggedInUser,
       description: this.description,
       quantidade: this.quantidade,
-      consumo: this.consumo,
       odometro: this.odometro,
+      consumo: mileage,
       datareg: this.datareg
     };
-
-    let sum = this.odometro / this.quantidade;
-    let alert = this.alertCtrl.create({
-      title: 'Consumo',
-      subTitle: 'alo',
-      buttons: ['Dismiss']
-    });
-    alert.present();
 
     if (item.email && item.description)
     {
