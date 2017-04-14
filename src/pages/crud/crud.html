@@ -26,11 +26,12 @@
         </ion-item>
         <ion-item>
             <ion-label fixed>Quantidade</ion-label>
-            <ion-input type="text" [(ngModel)]="quantidade"></ion-input>
+            <ion-input type="float" [(ngModel)]="quantidade"></ion-input>
         </ion-item>
     </ion-list>
 
     <button ion-button (click)="postItem()" color="warning" block>Calcular</button>
+    <button ion-button (click)="mostraAlerta()" block>Mostra Consumo</button>
 
     <ion-card text-center>
       <ion-card-header> {{description}} </ion-card-header>

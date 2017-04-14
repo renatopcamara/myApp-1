@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import { BackandService } from '@backand/angular2-sdk'
+import { NavController, NavParams, ToastController,AlertController } from 'ionic-angular';
 
 @Component({
   templateUrl: 'crud.html',
@@ -10,9 +11,9 @@ export class CrudPage {
 
   public email: string = '';
   description: string = 'abastecimento';
-  quantidade: number;
-  consumo: number;
-  odometro: number;
+  quantidade = 0;
+  consumo = 0 ;
+  odometro = 0 ;
   datareg: string = '14/04/2017';
 
   get score() {
@@ -30,7 +31,9 @@ export class CrudPage {
   auth_status:string = null;
   loggedInUser: string = '';
 
-  constructor(private backand: BackandService)
+  constructor(
+    private backand: BackandService,
+    private alertCtrl: AlertController)
   {
     this.searchQuery = '';
     let that = this;
@@ -59,6 +62,15 @@ export class CrudPage {
       );
   }
 
+  public mostraAlerta() {
+  let alert = this.alertCtrl.create({
+    title: 'Low battery',
+    subTitle: '10% of battery remaining',
+    buttons: ['Dismiss']
+  });
+  alert.present();
+}
+
   public postItem() {
     let item = {
       email: this.loggedInUser,
@@ -68,6 +80,14 @@ export class CrudPage {
       odometro: this.odometro,
       datareg: this.datareg
     };
+
+    let sum = this.odometro / this.quantidade;
+    let alert = this.alertCtrl.create({
+      title: 'Consumo',
+      subTitle: 'alo',
+      buttons: ['Dismiss']
+    });
+    alert.present();
 
     if (item.email && item.description)
     {
