@@ -1,0 +1,40 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title text-center>Fuel Mania - Registro</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="page2">
+    <ion-list>
+        <ion-item>
+            <ion-label floating>Seu e-mail</ion-label>
+            <ion-input type="email" [value]="email" (input)="email = $event.target.value"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Primeiro Nome</ion-label>
+            <ion-input type="text" [value]="firstName" (input)="firstName = $event.target.value"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Ultimo Nome</ion-label>
+            <ion-input type="text" [value]="lastName" (input)="lastName = $event.target.value"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Senha</ion-label>
+            <ion-input type="password" [value]="signUpPassword" (input)="signUpPassword = $event.target.value"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Repita sua senha</ion-label>
+            <ion-input type="password" [value]="confirmPassword" (input)="confirmPassword = $event.target.value"></ion-input>
+        </ion-item>
+        <!-- <h4 style="color:red;" ng-bind="vm.errorMessage"></h4> -->
+        <button ion-button (click)="signUp()" color="success" block>Salvar</button>
+    </ion-list>
+    <!-- <h3>In App Social</h3>
+    <div class="button-bar">
+        <button ion-button class="icon-left ion-social-facebook" color="positive" (click)="inAppSocial('facebook')" type="button">
+            <ion-icon name="logo-facebook"></ion-icon>
+            Facebook
+        </button>
+    </div> -->
+</ion-content>

@@ -1,0 +1,46 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title text-center>Fuel Mania - Abastecimento</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="page3">
+  <ion-list>
+        <ion-item>
+          <ion-label fixed>Data do Registro</ion-label>
+          <ion-input type="float" [value]="datareg" (input)="dataregistro = $event.target.value"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>E-mail</ion-label>
+            <ion-input type="float" [value]="email" (input)="email = $event.target.value"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Descrição</ion-label>
+            <ion-input type="float" [value]="description" (input)="description = $event.target.value"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Odometro</ion-label>
+            <ion-input type="float" [(ngModel)]="odometro"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Quantidade</ion-label>
+            <ion-input type="text" [(ngModel)]="quantidade"></ion-input>
+        </ion-item>
+    </ion-list>
+
+    <button ion-button (click)="postItem()" color="warning" block>Calcular</button>
+
+    <ion-card text-center>
+      <ion-card-header> {{description}} </ion-card-header>
+      <ion-card-content class="score">
+        <!-- Add card content here! -->
+        <p>{{datareg}} - {{email}}</p>
+        <p>{{odometro || '???' }} Km / {{quantidade || '???' }} L </p>
+        <p class="score"> {{score}} Km/L </p>
+      </ion-card-content>
+
+    </ion-card>
+
+</ion-content>

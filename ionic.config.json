@@ -1,0 +1,12 @@
+{
+  "name": "myApp#1",
+  "app_id": "c75da234",
+  "v2": true,
+  "typescript": true,
+  "DefaultBrowser": "chrome",
+  "watchPatterns": [
+    "www/js/*",
+    "!www/css/**/*",
+    "src/**/*"
+  ]
+}
