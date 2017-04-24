@@ -14,8 +14,7 @@ export class CrudPage {
   quantidade: number;
   consumo: number;
   odometro: number;
-  datareg: string = '14/04/2017';
-  dataregistro: string;
+  datareg: String = new Date().toLocaleString();
 
   get score() {
     let consumo = this.odometro / this.quantidade;
@@ -64,12 +63,28 @@ export class CrudPage {
   }
 
   mostraAlerta() {
-      let alert = this.alertCtrl.create({
-        title: 'Consumo',
-        message: 'Your friend, Obi wan Kenobi, just approved your friend request!',
-        buttons: ['Ok']
-      });
-      alert.present()
+    let alert = this.alertCtrl.create({
+       title: 'RESULTADO',
+       message: '' + this.odometro / this.quantidade,
+       buttons: [
+         {
+           text: 'Corrigir',
+           role: 'cancel',
+           handler: () => {
+             this.getItems();   
+             console.log(this.items);
+           }
+         },
+         {
+           text: 'OK',
+           handler: () => {
+             console.log('registro salvo');
+             this.postItem();
+           }
+         }
+       ]
+     });
+     alert.present();
     }
 
   public postItem() {
@@ -81,7 +96,7 @@ export class CrudPage {
       quantidade: this.quantidade,
       odometro: this.odometro,
       consumo: mileage,
-      datareg: this.datareg
+      datareg: new Date().toLocaleString()
     };
 
     if (item.email && item.description)

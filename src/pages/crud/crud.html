@@ -30,18 +30,16 @@
         </ion-item>
     </ion-list>
 
-    <button ion-button (click)="postItem()" color="warning" block>Calcular</button>
-    <button ion-button (click)="mostraAlerta()" block>Mostra Consumo</button>
+<!--    <button ion-button (click)="postItem()" color="warning" block>Calcular</button> -->
+    <button ion-button (click)="mostraAlerta()" block>Ver Resultado</button>
 
     <ion-card text-center>
-      <ion-card-header> {{description}} </ion-card-header>
+<!--      <ion-card-header> {{description}} - {{datareg}} - {{email}} </ion-card-header>
       <ion-card-content class="score">
-        <!-- Add card content here! -->
-        <p>{{datareg}} - {{email}}</p>
         <p>{{odometro || '???' }} Km / {{quantidade || '???' }} L </p>
         <p class="score"> {{score}} Km/L </p>
-      </ion-card-content>
-
+      </ion-card-content> -->
+        <p>{{ items }}</p>
     </ion-card>
 
 </ion-content>
