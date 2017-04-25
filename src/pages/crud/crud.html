@@ -32,18 +32,23 @@
 
 <!--    <button ion-button (click)="postItem()" color="warning" block>Calcular</button> -->
     <button ion-button (click)="mostraAlerta()" block>Ver Resultado</button>
+    <button ion-button (click)="getItems()">Get Items</button>
 
     <ion-card text-center>
 <!--      <ion-card-header> {{description}} - {{datareg}} - {{email}} </ion-card-header>
       <ion-card-content class="score">
         <p>{{odometro || '???' }} Km / {{quantidade || '???' }} L </p>
         <p class="score"> {{score}} Km/L </p>
-      </ion-card-content> -->
-        <p>{{ items }}</p>
+      </ion-card-content>
+        <p>{{ items }}</p> -->
       <ion-list>
         <ion-item *ngFor="let item of items">
-          <h2>{{ item.name }}</h2>
-          <p>{{ item.consumo }}</p>
+          <p>Email: {{ item.email }}</p>
+          <p>Description: {{ item.description }}</p>
+          <p>Quantidade: {{ item.quantidade }}</p>
+          <p>Odometro: {{ item.odometro }}</p>
+          <p>Consumo: {{ item.consumo }}</p>
+          <p>Data: {{ item.datareg }}</p>
         </ion-item>
       </ion-list>
     </ion-card>

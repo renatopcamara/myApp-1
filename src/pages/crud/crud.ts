@@ -64,14 +64,13 @@ export class CrudPage {
 
   mostraAlerta() {
     let alert = this.alertCtrl.create({
-       title: 'RESULTADO',
-       message: '' + this.odometro / this.quantidade,
+       title: ' ' + this.odometro / this.quantidade,
        buttons: [
          {
            text: 'Corrigir',
            role: 'cancel',
            handler: () => {
-             this.getItems();   
+             this.getItems();
              console.log(this.items);
            }
          },
