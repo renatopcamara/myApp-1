@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import { BackandService } from '@backand/angular2-sdk'
-import { AlertController } from 'ionic-angular';
+import { AlertController, LoadingController } from 'ionic-angular';
 
 @Component({
   templateUrl: 'crud.html',
@@ -33,7 +33,8 @@ export class CrudPage {
 
   constructor(
     private backand: BackandService,
-    public alertCtrl: AlertController)
+    public alertCtrl: AlertController,
+    public loadingCtrl: LoadingController)
   {
     this.searchQuery = '';
     let that = this;
@@ -62,6 +63,14 @@ export class CrudPage {
       );
   }
 
+  presentLoading() {
+      this.loadingCtrl.create({
+        content: 'Salvando o registro...',
+        duration: 1000,
+        dismissOnPageChange: true
+      }).present();
+    }
+
   mostraAlerta() {
     let alert = this.alertCtrl.create({
        title: ' ' + this.odometro / this.quantidade,
@@ -70,8 +79,7 @@ export class CrudPage {
            text: 'Corrigir',
            role: 'cancel',
            handler: () => {
-             this.getItems();
-             console.log(this.items);
+             console.log('cancelando operação');
            }
          },
          {
@@ -88,7 +96,6 @@ export class CrudPage {
 
   public postItem() {
     let mileage = this.odometro / this.quantidade;
-
     let item = {
       email: this.loggedInUser,
       description: this.description,
@@ -106,10 +113,14 @@ export class CrudPage {
         // this.items.unshift({ id: null, name: this.name, description: this.description, idlogin: this.loggedInUser });
         // this.name = '';
         // this.description = '';
+        this.presentLoading();
+        this.getItems();
+        this.quantidade = null;
+        this.odometro = null;
       },
       (err: any) => {
         alert(err.data);
-      });
+        });
       }
   }
 
